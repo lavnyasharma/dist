@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import * as _ from "lodash";
 
 interface IWindow extends Window {
-    webkitSpeechRecognition: any;
-    SpeechRecognition: any;
+    webkitSpeechRecognition: unknown;
+    SpeechRecognition: unknown;
 }
 
 @Injectable()
 export class SpeechRecognitionService {
-    speechRecognition: any;
+    speechRecognition: unknown;
 
     constructor(private zone: NgZone) {
     }

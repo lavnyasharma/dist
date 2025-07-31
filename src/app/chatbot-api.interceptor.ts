@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 export class chatbotApiInterceptor implements HttpInterceptor {
    // get user Ip address
 
-   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
       // console.log('ChatBotApiInterceptor was called');
 
       const clonedRequest = request.clone({

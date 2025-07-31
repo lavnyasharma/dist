@@ -41,7 +41,7 @@ export class SearchBoxComponent implements OnInit {
    translationConfig = true;
    disableTypeahead = false;
 
-   questions: any[];
+   questions: unknown[];
    micEnable: boolean;
    chromeResult;
    lead = false;

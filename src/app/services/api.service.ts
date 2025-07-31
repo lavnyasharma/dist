@@ -12,8 +12,8 @@ export class ApiService {
   private proxyPrefix = "/npciAPI/";
   constructor(private http: HttpClient) {}
   languageCode = "en";
-  preveviousContextData: any;
-  nextContextData: any;
+  preveviousContextData: unknown;
+  nextContextData: unknown;
   cxStructure;
   leadType;
   answerId;
@@ -24,11 +24,11 @@ export class ApiService {
   voicedCapture = false;
   closed =false;
   // Observable string sources
-  private botReplyPassMethodCall = new Subject<any>();
-  private userQueryPassMethodCall = new Subject<any>();
-  private modSubject = new Subject<any>();
-  private changeLangSubject = new Subject<any>();
-  private autoSuggestionSubject = new Subject<any>();
+  private botReplyPassMethodCall = new Subject<unknown>();
+  private userQueryPassMethodCall = new Subject<unknown>();
+  private modSubject = new Subject<unknown>();
+  private changeLangSubject = new Subject<unknown>();
+  private autoSuggestionSubject = new Subject<unknown>();
   // Observable string streams
   ReplyToUser$ = this.botReplyPassMethodCall.asObservable();
   changeLangSubject$ = this.changeLangSubject.asObservable();
@@ -36,13 +36,13 @@ export class ApiService {
   modSubject$ = this.modSubject.asObservable();
   autoSuggestion$ = this.autoSuggestionSubject.asObservable();
 
-  botReply$: Observable<any>;
+  botReply$: Observable<unknown>;
 
-  private botReplySubject = new Subject<any>();
+  private botReplySubject = new Subject<unknown>();
 
   feedBack(payload) {
     payload.userToken = this.getUserToken();
-    return this.http.post<any[]>(
+    return this.http.post<unknown[]>(
       this.proxyPrefix + "dashboard/feedback",
       payload
     );
@@ -108,12 +108,12 @@ export class ApiService {
       this.userQueryPassMethodCall.next("option");
     }
     this.http
-      .post<any[]>(
+      .post<unknown[]>(
         this.proxyPrefix + "bot/sendQuery/" + this.languageCode,
         payload
       )
       .subscribe(
-        (data: any) => {
+        (data: unknown) => {
           if (mode === 2 && this.voicedCapture) {
             this.answerId = data.answerId;
 
@@ -300,7 +300,7 @@ this.botReplyPassMethodCall.next(response);
   }
   getAll() {
     this.http
-      .get<any[]>(this.proxyPrefix + "bot/questions/" + this.languageCode)
+      .get<unknown[]>(this.proxyPrefix + "bot/questions/" + this.languageCode)
       .subscribe(
         (data: any) => {
           this.autoSuggestionSubject.next(data);
@@ -355,7 +355,7 @@ this.botReplyPassMethodCall.next(response);
     formData.append("uploadFile", blob);
 
     this.http
-      .post<any[]>("/voiceAPI/training/speechtotext/" + this.languageCode, formData)
+      .post<unknown[]>("/voiceAPI/training/speechtotext/" + this.languageCode, formData)
       .subscribe(
         (data: any) => {
           // alert(data.text)
@@ -381,7 +381,7 @@ this.botReplyPassMethodCall.next(response);
     };
 
     this.http
-      .post<any[]>("/npciAPI/dashboard/audiocapture", payload)
+      .post<unknown[]>("/npciAPI/dashboard/audiocapture", payload)
       .subscribe(
         (data: any) => {
           // console.log("captured");
@@ -489,7 +489,7 @@ tracker(value) {
   return this.http.post('/npciAPI/dashboard/clickedlist', payload, {
     headers: headers,
   }).pipe(
-    tap((data: any) => {
+    tap((data: unknown) => {
       if (data.userToken) {
         let p = {
           expiresAt: dayjs().add(15, "minute").format("YYYY-MM-DDTHH:mm:ss"),

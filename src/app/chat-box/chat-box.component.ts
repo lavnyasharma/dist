@@ -23,7 +23,7 @@ export class ChatBoxComponent implements OnInit {
   public langData = data;
   cookie = true;
   public feedmintext;
-  public payload: any;
+  public payload: unknown;
   public feedflg = false;
   isSubmitted = false;
   public Disflg = false;
@@ -84,13 +84,13 @@ export class ChatBoxComponent implements OnInit {
   public totalVisit: number;
   public totalQuery: number = 0;
   public sessonQuery: number = 0;
-  public userQuery: any;
+  public userQuery: unknown;
   isMa = false;
   voiceSrc;
   myvoice;
   restItems;
   listOfPosition = ["english", "hindi", "marathi", "kannada"];
-  public dtm: any = new Date();
+  public dtm: unknown = new Date();
   scrolltop: number = null;
   public langList = [
     { short: "en", full: "English" },
@@ -193,8 +193,8 @@ export class ChatBoxComponent implements OnInit {
         }, 30000);
       }, this.activeInterval);
 
-      const conversation: any = {};
-      let messageStepsFlow: any = {};
+      const conversation: unknown = {};
+      let messageStepsFlow: unknown = {};
       if (data.status == 200) {
         // console.log(data.ReplyData);
         if (data.ReplyData.answer.length > 1) {
@@ -811,7 +811,7 @@ conversation.refreshBtn=true;
     this.Disflg = false;
     event.currentTarget.parentNode.parentNode.classList.add("disabled");
     event.target.setAttribute("style", "color:green;");
-    this.apiservice.feedBack(this.payload).subscribe((data: any) => {});
+    this.apiservice.feedBack(this.payload).subscribe((data: unknown) => {});
     this.feedflg = true;
     const comment = Array.from(
       document.getElementsByClassName("comment") as HTMLCollectionOf<
@@ -984,7 +984,7 @@ conversation.refreshBtn=true;
         this.timeSpend = new Date(0, 0, 0);
         this.timeSpend.setSeconds(value);
       },
-      (error: any) => {
+      (error: unknown) => {
         console.log("error");
       },
       () => {

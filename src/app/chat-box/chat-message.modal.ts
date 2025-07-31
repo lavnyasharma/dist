@@ -1,8 +1,8 @@
 export interface ChatMessages {
     userQuery: string;
-    botReply: any;
+    botReply: unknown;
     AudioUrl: string;
-    dtm: any;
+    dtm: unknown;
     video: string;
     language: languageCheck;
 }

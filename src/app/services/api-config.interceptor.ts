@@ -11,10 +11,9 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ApiConfigInterceptor implements HttpInterceptor {
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-
+  ): Observable<HttpEvent<unknown>> {
     const clonedRequest = request.clone({
       headers: request.headers,
       // .set("auth-key", "14d437de-e03a-11e9-9d36-2a2ae2dbcce4")
