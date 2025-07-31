@@ -2025,7 +2025,8 @@ conversation.refreshBtn=true;
     };
     // console.log(this.payload);
     this.Disflg = false;
-    this.apiservice.feedBack(this.payload).subscribe((data: unknown) => {});    this.feedflg = true;
+    this.apiservice.feedBack(this.payload).subscribe((data: any) => {});
+    this.feedflg = true;
     const comment = Array.from(
       document.getElementsByClassName("comment") as HTMLCollectionOf<
         HTMLElement

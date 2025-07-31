@@ -302,7 +302,7 @@ this.botReplyPassMethodCall.next(response);
     this.http
       .get<unknown[]>(this.proxyPrefix + "bot/questions/" + this.languageCode)
       .subscribe(
-        (data: any) => {
+        (data: unknown) => {
           this.autoSuggestionSubject.next(data);
         },
         (error) => {
@@ -318,7 +318,7 @@ this.botReplyPassMethodCall.next(response);
       category: label,
     };
     this.http
-      .post<any[]>(
+      .post<unknown[]>(
         this.proxyPrefix + "bot/questionsbycategory/" + this.languageCode,
         payload
       )
