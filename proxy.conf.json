@@ -1,0 +1,32 @@
+{
+  "/npciAPI": {
+    "target": "https://digisaathi.info",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/voiceAPI": {
+    "target": "https://voiceapi.corover.ai/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/translationAPI": {
+    "target": "https://translation.googleapis.com/language/translate/v2?key=AIzaSyCI31hyIHjBt-4GsmZysqaqzIYoR100a8A",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/translationAPI": ""
+    }
+  },
+  "/voiceCaptureAPI/*": {
+    "target": "http://20.235.64.99:8081/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/voiceCaptureAPI/": ""
+    }
+  }
+}

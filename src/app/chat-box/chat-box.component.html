@@ -1,0 +1,1027 @@
+<div class="chat-wrap" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+  <div class="inactive_widget" *ngIf="inactive_widget">
+    <div class="inactive_widget__container">
+      <div class="inactive_widget__image">
+        <img
+          src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/Thinking_Smiley.svg"
+          alt=""
+        />
+      </div>
+      <div class="inactive_widget__descrption">
+        <h3>{{ langData[languageCode].widgetHeader }}</h3>
+        <span> {{ langData[languageCode].widgetDescription }}</span>
+      </div>
+      <div class="inactive_widget__buttons">
+        <button
+          nz-button
+          nzType="primary"
+          style="background: #00468f"
+          (click)="
+            toggleWidget(
+              '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.1',
+              langData[languageCode].widgetYes,
+              'Yes'
+            )
+          "
+        >
+          {{ langData[languageCode].widgetYes }}
+        </button>
+        <button
+          nz-button
+          nzType="default"
+          (click)="
+            toggleWidget(
+              '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.2',
+              langData[languageCode].widgetNo,
+              'No'
+            )
+          "
+        >
+          {{ langData[languageCode].widgetNo }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <nz-carousel
+    class="carousel_container"
+    style="
+  border-radius: 5px;
+  overflow: hidden;"
+    nzAutoPlay
+  >
+    <div
+      nz-carousel-content
+      class="slick-slide slick-active"
+      style="position: relative; width: 373px; height: 160px;"
+    >
+      <img
+        src="./assets/1.png"
+        alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+    <div nz-carousel-content>
+      <img
+        src="./assets/2.png"
+        alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+    <div nz-carousel-content>
+      <img
+        src="./assets/3.png"
+        alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+    <div nz-carousel-content>
+      <img src="./assets/4.png" alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+    <div nz-carousel-content>
+      <img src="./assets/5.png" alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+    <div nz-carousel-content>
+      <img src="./assets/6.png" alt=""
+        style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer"
+      />
+    </div>
+  </nz-carousel> -->
+
+  <!-- Main Carousel Disbled on 5th Oct 2023-->
+  <!-- <nz-carousel class="carousel_container" nzAutoPlay>
+    <div nz-carousel-content *ngFor="let item of trendingData.carouselArray">
+      <img src="{{ item.imgSrc }}" alt="" style="height: 160px; width: 90%; border-radius: 15px; cursor: pointer" />
+    </div>
+  </nz-carousel> -->
+
+  <!-- <br /> -->
+
+  <div
+    class="chat-bubble chat-bot"
+    style="margin-bottom: 0.5em !important"
+    *ngIf="welcomeOne"
+  >
+    <p class="chat-text" [innerHTML]="chat1"></p>
+    <span class="chat-time">{{ dtm | timeAgo }}</span>
+  </div>
+
+  <div
+    *ngIf="welcomeThree"
+    style="clear: both; width: 100%; margin-bottom: 20px"
+  >
+    <!--<nz-list
+      style="
+            display: inline-block;
+            color: white;
+            background-color: navy;
+            padding: 8px;
+            border-radius: 30px;
+            margin-bottom: 10px;
+            font-size: medium;
+         "
+      nzHeader="{{ langHeader }}"
+    >
+    </nz-list>
+    <nz-list-item
+      class="option"
+      style="cursor: pointer "
+      *ngFor="let lang of langList"
+      (click)="setLanguage(lang.short, lang.full, true)"
+    >
+      <span nz-typography></span>
+      {{ lang.full }}
+    </nz-list-item>
+  </div>  -->
+
+    <div style="margin-left: 28px;">
+      <div
+        class="chatbot-options"
+        style="background-color: #193282; padding: 10px; text-align: center; border-radius: 20px; margin-bottom: 10px;"
+      >
+        <p class="top-header" style="margin-bottom: 0em;">
+          <strong style="color: white; ">{{ langHeader }}</strong>
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="options-container"
+      style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-width: 369px;"
+    >
+      <ng-container>
+        <div
+          class="option-oval"
+          *ngFor="let lang of langList"
+          (click)="setLanguage(lang.short, lang.full, true)"
+        >
+          <strong>{{ lang.full }}</strong>
+        </div>
+      </ng-container>
+    </div>
+
+    <br />
+
+    <div
+      class="chat-bubble chat-bot"
+      style="margin-bottom: 0.5em !important"
+      *ngIf="welcomeTwo"
+    >
+      <p class="chat-text" [innerHTML]="chat2"></p>
+      <span class="chat-time">{{ dtm | timeAgo }}</span>
+    </div>
+
+    <div
+      class="chat-bubble chat-bot"
+      style="margin-bottom: 0.5em !important"
+      *ngIf="welcomeFour"
+    >
+      <p class="chat-text">{{ chat3 }}</p>
+      <span class="chat-time">{{ dtm | timeAgo }}</span>
+    </div>
+
+    <!--<div
+      *ngIf="welcomeFive"
+      style="clear: both; width: 90%; margin-bottom: 20px"
+    >
+      <nz-list
+        style="
+            margin-top: 10px;
+            margin-top: 10px !important;
+            border-radius: 1rem !important;
+            border: none;
+            box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px !important;
+            background: #e6ebf0 !important;
+         "
+        nzBordered
+        nzHeader="{{ confirm }}"
+      >
+        <nz-list-item
+          class="option"
+          (click)="
+            autoriseBot(
+              '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.1',
+              continue,
+              autoriseBotToggle,
+              'Continue'
+            )
+          "
+        >
+          <span nz-typography> {{ continue }}</span>
+        </nz-list-item>
+        <nz-list-item
+          class="option"
+          (click)="
+            autoriseBot(
+              '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.2',
+              abort,
+              autoriseBotToggle,
+              'Abort'
+            )
+          "
+        >
+          <span nz-typography> {{ abort }}</span>
+        </nz-list-item>
+      </nz-list>
+    </div> -->
+
+    <div
+      *ngIf="welcomeFive"
+      class="ui-chatbox"
+      style="padding: 0.75em;
+      border-radius: 1rem;
+      background-color: #e6ebf1;
+      clear: both;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+      max-width: 90%;"
+    >
+      <div>
+        <div
+          class="chatbot-options"
+          style="padding: 10px 10px 0px 0px;
+               text-align: left;"
+        >
+          <p class="options-message">
+            <strong>{{ confirm }}</strong>
+          </p>
+        </div>
+        <div
+          class="options-container"
+          style="
+          display: inline-block;
+          margin-bottom: 11px;
+          cursor: pointer;
+          display: flex;"
+        >
+          <ng-container>
+            <div
+              class="option-oval"
+              (click)="
+                autoriseBot(
+                  '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.1',
+                  continue,
+                  autoriseBotToggle,
+                  'Continue'
+                )
+              "
+            >
+              <strong>{{ continue }}</strong>
+            </div>
+            <div
+              class="option-oval"
+              (click)="
+                autoriseBot(
+                  '84306840-fe83-4d11-a705-c2d6bbe9eb58,1.2',
+                  abort,
+                  autoriseBotToggle,
+                  'Abort'
+                )
+              "
+            >
+              <strong>{{ abort }}</strong>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div *ngFor="let conversation of conversations; let idx = index">
+      <div class="chat-bubble chat-user">
+        <p [innerHTML]="conversation.userQuery" class="chat-text"></p>
+        <!-- <span class="chat-time">YOU</span> -->
+      </div>
+
+      <div
+        class="chat-bubble chat-bot"
+        [ngClass]="{ 'chat-News': conversation.carousel }"
+      >
+        <div
+          class="chat-text"
+          *ngIf="conversation.botReply && conversation.botReply !== ''"
+        >
+          <div
+            [class.setHeight]="conversation.showMore"
+            [class.show]="conversation.showMoreEnable"
+          >
+            <p [innerHTML]="conversation.botReply"></p>
+            <div *ngIf="conversation.video" style="text-align: center">
+
+              <video controls width="100%" [autoplay]="autoplayEnabled">
+                <source [src]="conversation.video" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div *ngIf="conversation.showMore" class="readMore">
+            <p
+              (click)="
+                conversation.showMoreEnable = !conversation.showMoreEnable
+              "
+            >
+              {{
+                conversation.showMoreEnable ? "Read Less 🔼" : "Read More 🔽"
+              }}
+            </p>
+          </div>
+          <div *ngIf="conversation.bharatGPT" style="padding-top: 5px; text-align: right;" >
+            <div class="logo-container">
+            <a style="cursor:pointer" href="https://bharatgpt.ai/" target="_blank">
+              <img alt="bharatGPT Logo"
+                   src="https://cdn.jsdelivr.net/gh/corover/assets@new_assets/bial_uat/bharathGPT.png"
+                   style="width: 50px; margin-bottom: -9px;" />
+
+            </a>
+          </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="conversation.feedback">
+          <div class="rating">
+            <div class="rating__container">
+              <div class="rating__label">
+                <span class="ant-rate-text">
+                  <strong>{{ conversation.rating }}</strong>
+                </span>
+              </div>
+              <div class="rating__selector">
+                <nz-rate
+                  (nzOnHoverChange)="hoverRating($event, idx)"
+                  (ngModelChange)="selectRating($event, idx, conversation)"
+                  [ngModel]="conversation.ratingValue"
+                  [nzDisabled]="conversation.disableRating"
+                ></nz-rate>
+              </div>
+            </div>
+            <div
+              class="comment"
+              style="margin-top: 15px; margin-bottom: 10px"
+              *ngIf="conversation.comment"
+            >
+              <label>{{ langData[languageCode].comment }}</label>
+              <textarea
+                maxlength="100"
+                nz-input=""
+                [style.border-color]="feedmintext ? 'red' : 'lightgray'"
+                [(ngModel)]="Feedbk"
+                placeholder="{{ langData[languageCode].enterFeed }}"
+                class="ant-input ng-untouched ng-pristine ng-valid ng-star-inserted"
+                style="margin-top: 5px; margin-bottom: 10px"
+              ></textarea>
+              <p
+                *ngIf="valiflg"
+                style="color: #c62828; font-size: small; text-align: left"
+              >
+                {{ langData[languageCode].feedInfo }}
+              </p>
+              <p
+                *ngIf="badSenFlag"
+                style="color: #c62828; font-size: small; text-align: left"
+              >
+                {{ langData[languageCode].DisDetails }}
+              </p>
+
+              <div nz-row class="feedbtns">
+                <div nz-col [nzSpan]="12">
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzSize="small"
+                    (click)="cancelFeed($event)"
+                    value=""
+                  >
+                    {{ langData[languageCode].cancel }}
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzSize="small"
+                    (click)="submitFeed($event)"
+                    value=""
+                  >
+                    {{ langData[languageCode].submitt }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="conversation.carousel">
+    <div class="carousel-container">
+  <div class="carousel-scroll">
+    <mat-card
+      *ngFor="let slide of conversation.carousel"
+      class="carousel-slide"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ slide.title }}</mat-card-title>
+        <mat-card-subtitle>{{ slide.snippet }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="slide.img" alt="{{ slide.title }}" />
+      <mat-card-actions>
+        <a mat-button href="{{ slide.link }}" target="_blank">View Details</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+        </div>
+
+        <span class="chat-time">{{ conversation.dtm | timeAgo }}</span>
+
+        <div
+          class="feedback-wrap"
+          id="feedback-wrap"
+          *ngIf="
+            conversation.botReply &&
+            conversation.botReply !== '' &&
+            !conversation.feedback &&
+            !conversation.isFallback &&
+            conversation.botReply !== '<p>Let me know your query</p>' &&
+            conversation.botReply !== '<p>मुझे अपनी प्रश्न बताएं</p>' &&
+            conversation.botReply !== '<p>कृपया मुझे अपना प्रश्न बताएं</p>' &&
+            conversation.botReply !== '<p>मला तुमचा प्रश्न कळवा</p>' &&
+            conversation.botReply !== '<p>ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ನನಗೆ ತಿಳಿಸಿ</p>' &&
+            conversation.botReply !== '<p>আমাকে আপনার প্রশ্ন জানান</p>' &&
+            conversation.botReply !==
+              '<p>உங்கள் கேள்வியை எனக்குத் தெரியப்படுத்துங்கள்</p>' &&
+            conversation.botReply !== '<p>আমাকে আপনার প্রশ্ন জানতে দিন</p>' &&
+            conversation.botReply !== '<p>મને તમારી ક્વેરી જણાવો</p>' &&
+            conversation.botReply !== '<p>మీ ప్రశ్నను నాకు తెలియజేయండి</p>' &&
+            conversation.botReply !==
+              '<p>നിങ്ങളുടെ അന്വേഷണം എന്നെ അറിയിക്കൂ</p>' &&
+            conversation.botReply !== '<p>നിങ്ങളുടെ ചോദ്യം എന്നോട് പറയൂ</p>' &&
+            conversation.botReply !== '<p>ਮੈਨੂੰ ਆਪਣੀ ਪੁੱਛਗਿੱਛ ਦੱਸੋ</p>' &&
+            conversation.botReply !== '<p>ମୋତେ ଆପଣଙ୍କ କ୍ୱେରି ଜଣାନ୍ତୁ</p>' &&
+
+            conversation.botReply !== '<p>আপোনাৰ প্ৰশ্ন মোক জনাওক</p>' &&
+            conversation.botReply !== '<p>ମୋତେ ତୁମର ଜିଜ୍ଞାସା ଜଣାଇବାକୁ ଦିଅ|</p>'
+          "
+        >
+          <!-- <p class="mainHead">{{ feedtext }}</p>
+            <span>{{ feedtext2 }}</span> -->
+          <p class="feeback-action-wrap">
+            <i
+              nz-icon
+              nzType="like"
+              nzTheme="outline"
+              style="color: #1fa94b; border: 1px solid #1fa94b"
+              (click)="
+                like(
+                  conversation,
+                  'Excellent',
+                  $event,
+                  conversation.optionsDisabled
+                )
+              "
+            ></i>
+            <i
+              nz-icon
+              nzType="dislike"
+              nzTheme="outline"
+              style="color: orangered; border: 1px solid orangered"
+              (click)="
+                dislike(
+                  conversation,
+                  'Need_improvement',
+                  $event,
+                  conversation.optionsDisabled
+                )
+              "
+            ></i>
+          </p>
+          <div class="comment" style="display: none">
+          <div class="feedback-container">
+  <textarea
+    nz-input=""
+    maxlength="100"
+    [style.border-color]="feedmintext ? 'red' : 'lightgray'"
+    [(ngModel)]="Feedbk"
+    placeholder="{{ enterFeed }}"
+    class="custom-feedback-textarea"
+  ></textarea>
+</div>
+
+
+            <p
+              *ngIf="valiflg"
+              style="color: #c62828; font-size: small; text-align: left"
+            >
+              {{ langData[languageCode].feedInfo }}
+            </p>
+            <p
+              *ngIf="badSenFlag"
+              style="color: #c62828; font-size: small; text-align: left"
+            >
+              {{ langData[languageCode].DisDetails }}
+            </p>
+
+            <div nz-row class="feedbtns">
+              <div nz-col [nzSpan]="24">
+                <button
+  nz-button
+  nzType="default"
+  nzSize="small"
+  (click)="cancelFeed($event)"
+  value=""
+  class="custom-cancel-btn"
+>
+  {{ cancel }}
+</button>
+
+                <button
+                  nz-button
+                  nzType="primary"
+                  nzSize="small"
+                  (click)="submitFeed($event)"
+                  value=""
+                >
+                  {{ langData[languageCode].submitt }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="conversation.similarQuestions" class="similarMatchClass">
+          <div style="display: flex; align-items: center">
+            <p
+              style="
+                     margin-top: -4px;
+                     margin-bottom: -3px;
+                     font-weight: bold;
+                     font-size: 15x;
+                     color: #5a5a59;
+                     font-size: 15px;
+                  "
+            >
+              <strong>
+                {{ langData[languageCode].alsoTry }}
+              </strong>
+            </p>
+            <div
+              *ngIf="!conversation.showRelatedQuery"
+              style="margin-left: 10px"
+              (click)="toggleRelatedQuery(idx)"
+            >
+              <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+            </div>
+            <div
+              *ngIf="conversation.showRelatedQuery"
+              style="margin-left: 10px"
+              (click)="toggleRelatedQuery(idx)"
+            >
+              <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div *ngIf="!conversation.showRelatedQuery">
+<!-- <a
+  *ngFor="let button of (conversation.similarQuestions || []) | slice: 1:3"
+  (click)="quickLink(button.name)"
+  class="button similarMatchButton"
+>
+  {{ button.name }} <i class="icon-chevron-right"></i>
+</a> -->
+<!-- similar ques -->
+
+          </div>
+        </div>
+
+        <!--<div
+          class="trending-wrap disable-select"
+          style="width: 100%; margin: 0"
+          *ngIf="conversation.option && conversation.option.length !== 0"
+        >
+           <nz-list
+            style="
+           margin-top: 10px;
+           margin-top: 15px !important;
+           margin-bottom: 15px;
+           border-radius: 1rem !important;
+           border: none;
+           box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+          rgb(0 0 0 / 30%) 0px 1px 3px -1px !important;
+           background: #e6ebf0 !important;
+         "
+            nzBordered
+            nzHeader="{{ conversation.optionMessage }}"
+          >
+            <nz-list-item
+              *ngFor="let item of conversation.option"
+              class="option"
+              (click)="
+                optionSelection(
+                  item.value,
+                  item.label,
+                  idx,
+                  conversation.optionsDisabled
+                )
+              "
+            >
+              <span nz-typography> {{ item.label }}</span>
+            </nz-list-item>
+          </nz-list> -->
+
+        <div
+          *ngIf="conversation.option && conversation.option.length !== 0"
+          class="ui-chatbox"
+          style="padding: 0.75em;
+      border-radius: 1rem;
+      background-color: #e6ebf1;
+      clear: both;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+      max-width: 100%;"
+        >
+          <div
+            class="chatbot-options"
+            style="padding: 10px 10px 0px 0px;
+            text-align: left;"
+          >
+            <p
+              class="options-message"
+              style="font-weight: 800; min-width: 340px"
+            >
+              <strong>{{ conversation.optionMessage }}</strong>
+            </p>
+            <div
+              class="trending-wrap disable-select"
+              style="width: 100%; margin: 0"
+              *ngIf="conversation.option && conversation.option.length !== 0"
+            >
+              <div
+                class="options-container"
+                style="display: flex; flex-wrap: wrap; justify-content: left; min-width: 281px;
+                "
+              >
+                <ng-container>
+                  <div
+                    class="option-oval"
+                    *ngFor="let item of conversation.option"
+                    (click)="
+                      optionSelection(
+                        item.value,
+                        item.label,
+                        idx,
+                        conversation.optionsDisabled
+                      )
+                    "
+                  >
+                    <strong>{{ item.label }}</strong>
+                    <div class="new-tooltip" *ngIf="item.label === 'UPI123Pay'">New</div>
+                    <div class="new-tooltip" *ngIf="item.label === 'यूपीआई123पे'">नया</div>
+
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ng-container
+          *ngIf="conversation.option && conversation.option.length !== 0"
+        >
+          <div
+            class="ui-chatbox"
+            style="padding: 0.75em;
+              border-radius: 1rem;
+              background-color: #e6ebf1;
+              clear: both;
+              white-space: pre-wrap;
+              word-wrap: break-word;
+              box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+              max-width: 100%;"
+          >
+            <div
+              class="chatbot-options"
+              style="padding: 10px 10px 0px 0px;
+                text-align: left;"
+            >
+              <p
+                class="options-message"
+                style="font-weight: 800; min-width: 340px"
+              >
+                <strong>{{ conversation.optionMessage }}</strong>
+              </p>
+              <div
+                class="trending-wrap disable-select"
+                style="width: 100%; margin: 0"
+              >
+                <div
+                  class="options-container"
+                  style="display: flex; flex-direction: column; justify-content: left; min-width: 281px;"
+                >
+                  <ng-container *ngIf="!isMa">
+                    <div
+                      class="option-oval"
+                      *ngFor="let item of conversation.option"
+                      (click)="
+                        optionSelection(
+                          item.value,
+                          item.label,
+                          idx,
+                          conversation.optionsDisabled
+                        )
+                      "
+                    >
+                      <strong>{{ item.label }}</strong>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="isMa">
+                    <div
+                      class="option-oval-ma"
+                      style="background-color: #c0c0c0;
+                      color: #193282;
+                      padding: 5px 17px;
+                      border-radius: 20px;
+                      margin-right: 17px;
+                      margin-bottom: 10px;
+                      font-size: small;
+                      cursor: pointer;
+                      margin-top: 10px;
+                      width: 202px;"
+                      *ngFor="let item of conversation.option"
+                      (click)="
+                        optionSelection(
+                          item.value,
+                          item.label,
+                          idx,
+                          conversation.optionsDisabled
+                        )
+                      "
+                    >
+                      <strong>{{ item.label }}</strong>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container> -->
+
+        <div class="chat-text card-layout" *ngIf="conversation.card">
+          <div *ngIf="conversation.card.img">
+            <img style="width: 100%" [src]="conversation.card.img" />
+          </div>
+
+          <p
+            *ngIf="conversation.card.title && conversation.card.title != 'N/A'"
+            class="card-title"
+            [innerHTML]="conversation.card.title"
+          ></p>
+
+          <p
+            class="card-snippet"
+            *ngIf="conversation.card.snippet"
+            [innerHTML]="conversation.card.snippet"
+          ></p>
+
+          <div class="card-link" *ngIf="conversation.card.link">
+            <a
+              [href]="conversation.card.link"
+              rel="noopener noreferrer"
+              target="_blank"
+              >{{ conversation.card.linkLabel }}</a
+            >
+          </div>
+
+          <div class="layout-table" *ngIf="conversation.description">
+            <div
+              [class.setHeight]="conversation.descriptionViewMore"
+              [class.show]="!conversation.descriptionViewMore"
+            >
+              <nz-descriptions nzBordered nzSize="small">
+                <nz-descriptions-item
+                  *ngFor="let description of conversation.description"
+                  [nzTitle]="description.title"
+                  >{{ description.value }}</nz-descriptions-item
+                >
+              </nz-descriptions>
+            </div>
+            <div *ngIf="conversation.description" class="readMore">
+              <p
+                (click)="
+                  conversation.descriptionViewMore = !conversation.descriptionViewMore
+                "
+              >
+                {{
+                  conversation.descriptionViewMore
+                    ? "Read More 🔽"
+                    : "Read Less 🔼"
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div *ngIf="last">
+        <span class="chat-time">{{ conversation.dtm | timeAgo }}</span>
+        <div class="feedback-btn">
+          <button nz-button nzType="default" [nzSize]="size">
+            <i nz-icon nzType="dislike"></i>
+          </button>
+          &nbsp;
+          <button nz-button nzType="default" [nzSize]="size">
+            <i nz-icon nzType="like"></i>
+          </button>
+        </div>
+      </div> -->
+      </div>
+
+      <div *ngIf="conversation.refreshBtn">
+        <div class="stp-btn playbtn" style="margin-top: 50px;" (click)="generativeAi(conversation.userQuery)">
+
+            <img src="https://bengaluruairport.corover.ai/assets/refresh-page-option.png" alt="" />
+        </div>
+    </div>
+
+    </div>
+
+    <div *ngIf="audioSupport && voiceSrc">
+      <div class="stp-btn stopbtn" *ngIf="spkrStop" (click)="stop()">
+        <!-- <span>Mute</span> -->
+        <img title="Mute" class="" src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/audioOff.svg" alt="" />
+      </div>
+
+      <div class="stp-btn playbtn" *ngIf="spkrplay" (click)="play()">
+        <!-- <span>Listen</span> -->
+        <img
+          title="Unmute"
+          src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/audioOn.svg"
+          alt=""
+          style="width: 15px"
+        />
+      </div>
+    </div>
+
+<div
+  class="dropup"
+  style="position: absolute; bottom: 4px; z-index: 9999;"
+>
+  <div class="btn-group dropup">
+    <!-- Toggle Button -->
+    <button
+      type="button"
+      class="btn lanBtn btn-primary"
+      style="padding: 1px 5px; background-color: #337ab7; border-color: #2e6da4; color: #fff; font-size: 14px;"
+     (click)="toggleDropdown($event)"
+    >
+      {{ languageSet }} <span class="caret"></span>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <ul
+      class="dropdown-menu dropdown-menu-left show"
+      *ngIf="isDropdownOpen"
+      style="display: block;
+    bottom: 20%;"
+    >
+      <li
+        *ngFor="let lang of langList"
+        (click)="setLanguage(lang.short, lang.full, false); isDropdownOpen = false"
+        style="cursor: pointer;"
+      >
+        <a class="dropdown-item">{{ lang.full }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+    <div *ngIf="typing">
+      <div class="chat-bubble chat-user" *ngIf="userQuery">
+        <p [innerHTML]="userQuery" class="chat-text"></p>
+      </div>
+      <div class="chat-bubble chat-bot">
+        <p class="chat-text">
+          <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="24px"
+            height="30px"
+            viewBox="0 0 24 30"
+            style="enable-background: new 0 0 50 50"
+            xml:space="preserve"
+          >
+            <rect x="0" y="13" width="4" height="5" fill="#333">
+              <animate
+                attributeName="height"
+                attributeType="XML"
+                values="5;21;5"
+                begin="0s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="y"
+                attributeType="XML"
+                values="13; 5; 13"
+                begin="0s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <rect x="10" y="13" width="4" height="5" fill="#333">
+              <animate
+                attributeName="height"
+                attributeType="XML"
+                values="5;21;5"
+                begin="0.15s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="y"
+                attributeType="XML"
+                values="13; 5; 13"
+                begin="0.15s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <rect x="20" y="13" width="4" height="5" fill="#333">
+              <animate
+                attributeName="height"
+                attributeType="XML"
+                values="5;21;5"
+                begin="0.3s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="y"
+                attributeType="XML"
+                values="13; 5; 13"
+                begin="0.3s"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+          </svg>
+        </p>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="feedbackoptions">
+      <div class="chat-bubble chat-bot">
+         <p class="chat-text">{{ chat4 }}</p>
+      </div>
+      <div class="trending-wrap disable-select">
+         <nz-list
+            style="margin-top: 10px; border-radius: 1.3em"
+            nzBordered
+            nzHeader="{{ trendingMessage }}"
+         >
+            <nz-list-item
+               *ngFor="let item of trendingOptions"
+               class="option"
+               (click)="trendingSelection(item)"
+            >
+               <span style="color: #193282" nz-typography
+                  ><strong
+                     ><i nz-icon nzType="right-circle" nzTheme="outline"></i> {{ item }}</strong
+                  ></span
+               >
+            </nz-list-item>
+         </nz-list>
+      </div>
+   </div> -->
+
+    <div *ngIf="feedflg">
+      <span class="mic-show done">
+        <img
+          src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/like.gif"
+          width="100px"
+          alt=""
+        />
+      </span>
+    </div>
+    <div *ngIf="feedDisflg">
+      <span class="mic-show done">
+        <img
+          src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/done.svg"
+          width="100px"
+          alt=""
+        />
+      </span>
+    </div>
+  </div>
+</div>

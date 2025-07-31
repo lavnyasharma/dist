@@ -1,0 +1,344 @@
+<div class="chat-input-box" id="chatLog" *ngIf="openSearch">
+  <!-- GENERIC SEARCHBOX START-->
+
+  <div *ngIf="!lead" class="chat-input__form">
+<input
+  type="text"
+  class="chat-input__text queryInput"
+  placeholder="{{ placeholderLabel }}"
+  [(ngModel)]="value"
+  (keydown.enter)="sendMessage()"
+  [matAutocomplete]="auto"
+  (keyup)="selectDropValue($event)"
+/>
+
+<mat-autocomplete #auto="matAutocomplete" (optionSelected)="querySelected($event.option.value)">
+  <mat-option *ngFor="let question of questions" [value]="question" class="custom-option">
+    <img src="https://cdn.jsdelivr.net/gh/corover/assets@new_assets/digisaathi_web/magnifying-glass.png" alt="search" class="option-icon" />
+    <span class="option-text">{{ question }}</span>
+  </mat-option>
+</mat-autocomplete>
+
+
+    <button
+      *ngIf="value"
+      (click)="sendMessage()"
+      class="chat-submit"
+      id="chat-submit"
+    >
+      <img
+        class="sendicon"
+        src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/send_contextbot.svg"
+        alt="Send"
+      />
+    </button>
+    <button
+      *ngIf="!value && micEnable && this.langCode !== 'or' && this.langCode !== 'asm'"
+      class="chat-submit mic"
+      id="chat-submit"
+    >
+      <img
+        style="width: 18px"
+        (click)="activateSpeechSearchMovie()"
+        class="sendicon"
+        src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/microphone_contextbot.svg"
+        alt="Mic"
+      />
+    </button>
+  </div>
+
+  <!-- GENERIC SEARCHBOX END-->
+
+  <!-- LEAD FORM SEARCHBOX START-->
+
+  <div
+    *ngIf="lead && !showConfirmBox && !popLead && !registerLeadBox"
+    class="leadForm"
+    [@inOutAnimation]
+  >
+    <!-- <img
+      class="close-lead"
+      (click)="popLead = true"
+      src="../../assets/down-arrow.png"
+      alt="close"
+    /> -->
+    <div class="leadForm___label">
+      {{ responseData.user_input.placeholder }}
+    </div>
+    <div class="leadForm___inputBox___container">
+      <div
+        *ngIf="
+          responseData.user_input.input_type === 'text' ||
+          responseData.user_input.input_type === 'email' ||
+          responseData.user_input.input_type === 'number'
+        "
+        style="display: flex; flex-direction: column; justify-content: center"
+      >
+        <div style="width: 100%">
+          <input
+            type="text"
+            [ngClass]="
+              isNotValid
+                ? 'leadForm___inputBox queryInput borderRed'
+                : 'leadForm___inputBox queryInput'
+            "
+            placeholder="{{ responseData.user_input.placeholder }}"
+            [(ngModel)]="value"
+            (keydown.enter)="sendLeadMeassage()"
+          />
+        </div>
+        <div *ngIf="isNotValid" style="width: 100%; margin-bottom: -16px">
+          <span
+            style="color: #ff0008e0; text-align: left; font-size: smaller"
+            [innerHTML]="responseData.validationMessage.message"
+          ></span>
+        </div>
+      </div>
+    </div>
+    <div class="leadForm___actions">
+      <div class="leadForm___action___button">
+        <button
+          (click)="sendLeadMeassage()"
+          nz-button
+          nzType="primary"
+          id="chat-submit"
+          nzBlock
+          [disabled]="sendDisabled"
+        >
+          SEND
+        </button>
+      </div>
+      <div
+        *ngIf="responseData.user_input.isRequired === false"
+        class="leadForm___action___button"
+        style="width: 70px"
+      >
+        <button
+          (click)="skipLead(responseData.user_input.skipLabel)"
+          nz-button
+          nzType="default"
+          nzDanger
+          class="skipButton"
+          id="chat-submit"
+          [disabled]="skipDisabled"
+        >
+          Skip <i class="fa fa-step-forward" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div
+        class="leadForm___action___microphone"
+        *ngIf="
+          (responseData.user_input.input_type === 'text' ||
+            responseData.user_input.input_type === 'email' ||
+            responseData.user_input.input_type === 'number') &&
+          micEnable
+        "
+      >
+        <button
+          style="
+                  background-color: #82baf75e;
+                  border-radius: 25px !important;
+                  border: 1px solid #82baf75e;
+               "
+          id="chat-submit"
+        >
+          <img
+            style="width: 18px"
+            (click)="activateSpeechSearchMovie()"
+            class="sendicon"
+            src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/microphone_contextbot.svg"
+            alt="Mic"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="lead && showConfirmBox && !popLead && !registerLeadBox"
+    class="leadForm"
+    [@inOutAnimation]
+  >
+    <div class="leadForm___label" style="margin-bottom: 15px">
+      {{ didMean }}
+    </div>
+    <h4>
+      <strong>{{ voiceValue }}</strong>
+    </h4>
+    <div
+      style="display: flex; width: 100%; justify-content: space-around; margin-top: 30px"
+    >
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 507.2 507.2"
+        style="enable-background: new 0 0 507.2 507.2"
+        xml:space="preserve"
+        style="width: 60px"
+        (click)="showConfirmBox = false"
+      >
+        <circle style="fill: #f15249" cx="253.6" cy="253.6" r="253.6" />
+        <path
+          style="fill: #ad0e0e"
+          d="M147.2,368L284,504.8c115.2-13.6,206.4-104,220.8-219.2L367.2,148L147.2,368z"
+        />
+        <path
+          style="fill: #ffffff"
+          d="M373.6,309.6c11.2,11.2,11.2,30.4,0,41.6l-22.4,22.4c-11.2,11.2-30.4,11.2-41.6,0l-176-176
+c-11.2-11.2-11.2-30.4,0-41.6l23.2-23.2c11.2-11.2,30.4-11.2,41.6,0L373.6,309.6z"
+        />
+        <path
+          style="fill: #d6d6d6"
+          d="M280.8,216L216,280.8l93.6,92.8c11.2,11.2,30.4,11.2,41.6,0l23.2-23.2c11.2-11.2,11.2-30.4,0-41.6
+L280.8,216z"
+        />
+        <path
+          style="fill: #ffffff"
+          d="M309.6,133.6c11.2-11.2,30.4-11.2,41.6,0l23.2,23.2c11.2,11.2,11.2,30.4,0,41.6L197.6,373.6
+c-11.2,11.2-30.4,11.2-41.6,0l-22.4-22.4c-11.2-11.2-11.2-30.4,0-41.6L309.6,133.6z"
+        />
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 507.2 507.2"
+        style="enable-background: new 0 0 507.2 507.2"
+        xml:space="preserve"
+        style="width: 60px"
+        (click)="sendLeadMeassage()"
+      >
+        <circle style="fill: #32ba7c" cx="253.6" cy="253.6" r="253.6" />
+        <path
+          style="fill: #0aa06e"
+          d="M188.8,368l130.4,130.4c108-28.8,188-127.2,188-244.8c0-2.4,0-4.8,0-7.2L404.8,152L188.8,368z"
+        />
+        <g>
+          <path
+            style="fill: #ffffff"
+            d="M260,310.4c11.2,11.2,11.2,30.4,0,41.6l-23.2,23.2c-11.2,11.2-30.4,11.2-41.6,0L93.6,272.8
+c-11.2-11.2-11.2-30.4,0-41.6l23.2-23.2c11.2-11.2,30.4-11.2,41.6,0L260,310.4z"
+          />
+          <path
+            style="fill: #ffffff"
+            d="M348.8,133.6c11.2-11.2,30.4-11.2,41.6,0l23.2,23.2c11.2,11.2,11.2,30.4,0,41.6l-176,175.2
+c-11.2,11.2-30.4,11.2-41.6,0l-23.2-23.2c-11.2-11.2-11.2-30.4,0-41.6L348.8,133.6z"
+          />
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+    </div>
+  </div>
+
+  <div
+    class="leadForm"
+    *ngIf="lead && popLead && !showConfirmBox && !registerLeadBox"
+    [@inOutAnimation]
+  >
+    <div
+      class="leadForm___label"
+      style="margin-bottom: 15px; border-bottom: 1px solid #dadee0"
+    >
+      <strong>{{ quitRegistration }}</strong>
+    </div>
+    <h4>{{ quitRegistration_label }}</h4>
+    <div style="align-items: flex-end; margin-top: 30px">
+      <button nz-button nzType="primary" (click)="closeLead()">
+        {{ yes }}
+      </button>
+      <button nz-button nzType="default" (click)="popLead = false">
+        {{ cancel }}
+      </button>
+    </div>
+  </div>
+
+  <!-- <div
+      class="leadForm"
+      *ngIf="lead && !popLead && !showConfirmBox && registerLeadBox"
+      [@inOutAnimation]
+   >
+      <div class="leadForm___label" style="margin-bottom: 15px; border-bottom: 1px solid #dadee0">
+         <strong>Do you want to book a TestDrive?</strong>
+      </div>
+      <h4>Please provide your contact details.</h4>
+      <h4>We'll contact you soon.</h4>
+      <div style="align-items: flex-end; margin-top: 30px">
+         <button nz-button nzType="primary" (click)="startLead()">Yes</button>
+         <button nz-button nzType="default" (click)="registerLeadBox = false; lead = false">
+            Ask new query
+         </button>
+      </div>
+   </div> -->
+  <!-- LEAD FORM SEARCHBOX END -->
+
+  <div class="mic-show-se" *ngIf="speakflg">
+    <img
+      (click)="activateSpeechSearchMovie()"
+      src="https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/Mic.svg"
+      width="200px"
+      alt="MIC"
+      style="cursor: pointer"
+    />
+  </div>
+</div>
+
+<div class="footer__container">
+  <div class="footer__content">
+        <div class="footer__logos">
+      <a title="CoRover® Pvt. Ltd.">
+        <img src="https://storage.googleapis.com/uiresource/uiresource.ap-south-1.linodeobjects.com/corover-v245/images/logo-white.png"
+          alt="CoRover Logo" />
+      </a>
+      <span class="logo-separator">|</span>
+      <a title="BharatGPT">
+        <img src="https://cdn.jsdelivr.net/gh/corover/assets@new_assets/askPai_prod/bharathGPT.png"
+          alt="BharatGPT Logo" />
+      </a>
+    </div>
+    <div class="footer__links">
+      <a href="https://www.digisaathi.info/privacy-policy" target="_blank">Privacy Policy</a>
+      <span>|</span>
+      <a href="https://www.digisaathi.info/terms-conditions" target="_blank">T & C</a>
+    </div>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,376 @@
+var isminimum = !0,
+  isMobile = window.orientation > -1,
+  isSticky = 1 === document.getElementsByClassName("cnb-sticky").length,
+  urlPath = window.location.pathname,
+  isBike = urlPath.includes("bikes") || urlPath.includes("bike");
+(minimize = !1),
+  (sendMessagetoFrame = !0),
+  (s = document.createElement("script"));
+var script1 = document.createElement("script"),
+  analyticScript = document.createElement("script"),
+  firstTime = !0,
+  isOpen = !1;
+(analyticScript.innerHTML =
+  "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\n\ngtag('config', 'UA-122267849-1');"),
+  document.getElementsByTagName("head")[0].appendChild(analyticScript),
+  ((script1 = document.createElement("script")).src =
+    "https://securepubads.g.doubleclick.net/tag/js/gpt.js"),
+  (script1.async = "async"),
+  (script1.type = "text/javascript"),
+  document.getElementsByTagName("head")[0].appendChild(script1);
+const chatWidget = document.createElement("div");
+(chatWidget.id = "corover-cb-widget"),
+  (chatWidget.style.cssText = isSticky
+    ? "width: 85px; height: 88px;position: fixed;top:50%; right: 22px; background-image: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/Ask_Me_1.png); background-repeat: no-repeat; background-size: contain; background-position: 0 0; transition: transform 0.2s ease; cursor: pointer; transform-origin: 50% 50%; z-index: 9999;"
+    : "width: 85px; height: 150px; top:50%; position: fixed; bottom: 2px; right: 20px; background-image: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/Ask_Me_1.png); background-repeat: no-repeat; background-size: contain; background-position: 0 0; transition: transform 0.2s ease; cursor: pointer; transform-origin: 50% 50%; z-index: 9999;");
+let miinBtn = document.createElement("div");
+(miinBtn.id = "resize"),
+  isMobile
+    ? (miinBtn.style.cssText = "display:none;")
+    : (miinBtn.style.cssText =
+        "background-image: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/minimize-window-26.png);background-repeat: no-repeat;background-position: 9px 8px;position: absolute;left: 86%;top: 15px;transform: translate(-50%, -10%);cursor: pointer;background-size: 16px 16px;width: 32px;height: 32px;border: none;");
+let closeBtn = document.createElement("div");
+(closeBtn.id = "corover-close-btn"),
+  (closeBtn.style.cssText =
+    "background: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/closebtn.svg); position: fixed; top: 48%; z-index: 999; right: 20px; width: 18px; height: 18px; background-size: contain; background-position: 0 0; background-repeat: no-repeat;display:block;cursor:pointer");
+let minBtn = document.createElement("div");
+(minBtn.id = "corover-min-btn"),
+  (minBtn.style.cssText =
+    "background: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/minbtn.svg); position: absolute; top: -10px; left: -5px; width: 18px; height: 18px; background-size: contain; background-position: 0 0; background-repeat: no-repeat;display:none");
+let maxBtn = document.createElement("div");
+(maxBtn.id = "corover-max-btn"),
+  (maxBtn.style.cssText =
+    "background: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/plusbtn.svg); position: absolute; top: 0px; left: -30px; width: 30px; height: 30px; background-size: contain; background-position: 0 0; background-repeat: no-repeat; display: none;");
+let wallMinimiser = document.createElement("img");
+wallMinimiser.id = "corover-wall-minimizer";
+//     (wallMinimiser.src = "https://uiresource.blob.core.windows.net/chatbot-res/sort-down-solid.svg"),
+//     (wallMinimiser.style.cssText = `    position: absolute;
+// padding: 0px 0px 1px 0px;
+// top: 50%;
+// border-radius: 3px 0px 0px 3px;
+// left: -31px;
+// width: 30px;
+// color: blue;
+// background: #c1c1c1;
+// height: 30px;
+
+// cursor: pointer;
+// transform: rotate(-90deg);`);
+// let wallExpander = document.createElement("div");
+// (wallExpander.id = "corover-wall-expander"),
+//     (wallExpander.innerHTML =
+//         "<div style='display: flex;flex-direction: row-reverse;align-items: center;justify-content: space-between;'> <img src='https://uiresource.blob.core.windows.net/chatbot-res/sort-down-solid.svg' class='expander_widget' /> <img src='https://uiresource.blob.core.windows.net/chatbot-res/Ask_Me_1.png' height='40' /> </div>"),
+//     (wallExpander.style.cssText = "    position: absolute;position: absolute;padding: 0px 0px 1px;top: 50%;right: 0px;width: 72px;color: blue;height: 30px;display: none;cursor: pointer;");
+let tootltip = document.createElement("div");
+(tootltip.className = "corover-dialog"),
+  (tootltip.innerHTML =
+    "<span>Hello,<br>I am your Digital Assistant.<br><br>You may ask your queries related to digital payments or can get Bank / Institution contact details. </span>"),
+  (tootltip.style.cssText =
+    "z-index: 999999;\ndisplay: none;\nposition: absolute;\nborder: 1px solid rgb(193 193 193);\nbackground: rgb(255 255 255);\ncolor: rgb(18, 34, 71);\nfont-family: sans-serif;\npadding: 7px 12px;\nwidth: 196px;\ntext-align: left;\nright: 24px;\nbottom: 150px;\nbox-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;\nborder-radius: 10px;\nfont-size: 12px;\nline-height: 16px !important;");
+let tootltip1 = document.createElement("div"),
+  dragBtn = document.createElement("div");
+(dragBtn.id = "corover-drag-btn"),
+  (dragBtn.style.cssText =
+    "background: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/drag.png); position: fixed; top: 61%; z-index: 99999999; right: 103px; width: 18px; height: 18px; background-size: contain; background-position: 0 0; background-repeat: no-repeat;display:block;cursor:pointer"),
+  (tootltip1.className = "corover-close-dialog"),
+  (tootltip1.innerHTML =
+    '<span><strong>Bye !!</strong></span><br><span>You can call me any time with</span><br><span style="color: #c13339;"><strong>ctrl + shift + B</strong></span>'),
+  (tootltip1.style.cssText =
+    "z-index: 999999;\ndisplay: none;\nposition: absolute;\nborder: 1px solid rgb(58, 150, 240);\nbackground: rgb(188, 209, 231);\ncolor: rgb(18, 34, 71);\nfont-family: sans-serif;\npadding: 7px 17px;\nwidth: 196px;\nheight: 46px;\ntext-align: left;\nright: 10px;\nbottom: 150px;\nbox-shadow: rgb(0 0 0 / 12%) 0px 1px 6px, rgb(95 71 71 / 24%) 0px 1px 4px;\nborder-radius: 10px;\nfont-size: 12px;\nline-height: 16px !important;");
+const chatbox = document.createElement("div");
+(chatbox.id = "corover-chatbox"),
+  (chatbox.style.cssText =
+    "font-family: Arial, Helvetica, sans-serif; color: white; z-index: 9999999999999999 !important; display:none; width: 405px;height: 87%; position: fixed; bottom: 0; right: 2px; background: white; border: 1px solid #272a2b; border-bottom: none; border-radius: 10px 10px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);");
+let titleBar = document.createElement("div");
+(titleBar.id = "corover-title-bar"),
+  (titleBar.style.cssText =
+    "background-color: #272a2b; border-radius: 10px 10px 0 0; color: white;");
+let frameBody = document.createElement("div");
+(frameBody.id = "corover-frame-body"),
+  (frameBody.style.cssText =
+    "width: 100%; height: 100%; background: #f5f5f5; border-radius: 10px 10px 0 0");
+let chatFrame = document.createElement("iframe");
+(chatFrame.id = "corover-chat-frame"),
+  chatFrame.setAttribute("frameborder", "none"),
+  chatFrame.setAttribute("width", "100%"),
+  chatFrame.setAttribute("height", "100%"),
+  chatFrame.setAttribute(
+    "allow",
+    "geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor"
+  ),
+  (chatFrame.style.borderRadius = "10px 10px 0 0"),
+  frameBody.appendChild(chatFrame),
+  titleBar.appendChild(miinBtn);
+let closeCbBtn = document.createElement("div");
+(closeCbBtn.id = "corover-close-cb-btn"),
+  (closeCbBtn.style.cssText =
+    "width: 29px; height: 25px; background-image: url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/close.svg); background-repeat: no-repeat;  background-size: 15px 22px; background-position: 5px 0; position: absolute; top: 17px; right: -7px; transform: translateX(-50%); cursor: pointer;"),
+  titleBar.appendChild(closeCbBtn);
+let adFrame = document.createElement("div");
+(adFrame.id = "div-gpt-ad-1612774908699-0"),
+  (adFrame.style.cssText = isSticky
+    ? "width:320px;position: fixed; bottom: 63px;  height: 50px; right:5px; z-index: 99999;margin:auto;"
+    : "width:320px;position: fixed; bottom: 5px;  height: 50px; right:5px; z-index: 99999;margin:auto;");
+let widgetFrameClBtn = document.createElement("img");
+(widgetFrameClBtn.src =
+  "https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/cls-btn-red.png"),
+  (widgetFrameClBtn.style.cssText = isSticky
+    ? " width: 20px;position: fixed;bottom: 116px;height: 20px;right: 4px;z-index: 99999;margin: auto; cursor:pointer"
+    : " width: 20px;position: fixed;bottom: 58px;height: 20px;right: 4px;z-index: 99999;margin: auto; cursor:pointer"),
+  widgetFrameClBtn.addEventListener(
+    "click",
+    function() {
+      (widgetFrameClBtn.style.display = "none"),
+        (adFrame.style.display = "none");
+    },
+    !1
+  );
+let dealIcon = document.createElement("img");
+function openBot(t) {
+  (isOpen = !0),
+    firstTime &&
+      ((chatFrame.src = "https://digisaathi.info/chatbot/"), (firstTime = !1)),
+    (this.style.display = "none"),
+    (chatbox.style.display = "block"),
+    (dragBtn.style.display = "none"),
+    (closeBtn.style.display = "none");
+  let e = {
+    sourceUrl: window.location.origin,
+    sourceType: isBike ? "bike" : "car",
+  };
+  setTimeout(() => {
+    document
+      .querySelector("#corover-chat-frame")
+      .contentWindow.postMessage(e, "*"),
+      (sendMessagetoFrame = !1);
+  }, 1e3),
+    t.stopPropagation();
+}
+function logKey(t) {
+  t.shiftKey &&
+    t.ctrlKey &&
+    "KeyB" === t.code &&
+    ((closeBtn.style.background =
+      "url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/closebtn.svg)"),
+    (tootltip1.style.display = "none"),
+    (adFrame.style.display = "block"),
+    (chatWidget.style.display = "block"),
+    (dealIcon.style.display = "block"));
+}
+(dealIcon.id = "corover-deal-icon"),
+  (dealIcon.style.cssText =
+    "    right: 166px; position: fixed;bottom: 51px; width: 156px; cursor: pointer; padding-right: 4px;z-index: 9999999;"),
+  chatWidget.addEventListener("click", openBot),
+  chatWidget.addEventListener("mouseover", function() {}, !1),
+  dealIcon.addEventListener(
+    "click",
+    function() {
+      window.open(
+        "https://www.amazon.in/Car-Motorbike-Store/b?ie=UTF8&node=4772060031&_encoding=UTF8&tag=corover-carandbike-21&linkCode=ur2&linkId=6dec2c14410567ec3091bc30aa8f45da&camp=3638&creative=24630"
+      );
+    },
+    !1
+  ),
+  chatWidget.addEventListener("mouseout", function() {}, !1),
+  closeBtn.addEventListener(
+    "click",
+    function(t) {
+      (chatWidget.style.display = "none"),
+        (closeBtn.style.display = "none"),
+        (dragBtn.style.display = "none");
+    },
+    !1
+  ),
+  minBtn.addEventListener(
+    "click",
+    function(t) {
+      (minimize = !0),
+        t.stopPropagation(),
+        (chatWidget.style.bottom = "59px"),
+        isMobile
+          ? ((chatWidget.style.zoom = "0.5"),
+            (maxBtn.style.display = "block"),
+            (this.style.display = "none"))
+          : ((chatWidget.style.zoom = "0.5"),
+            (maxBtn.style.display = "none"),
+            (this.style.display = "none"));
+    },
+    !1
+  ),
+  miinBtn.addEventListener(
+    "click",
+    function(t) {
+      isminimum ? miinimize() : maximize();
+    },
+    !1
+  ),
+  maxBtn.addEventListener(
+    "click",
+    function(t) {
+      (minimize = !1),
+        t.stopPropagation(),
+        (chatWidget.style.zoom = "normal"),
+        (closeBtn.style.display = "block"),
+        (chatWidget.style.bottom = "2px"),
+        (minBtn.style.display = "block"),
+        (this.style.display = "none");
+    },
+    !1
+  ),
+  closeCbBtn.addEventListener(
+    "click",
+    function() {
+      (isOpen = !1),
+        (firstTime = !0),
+        (chatbox.style.display = "none"),
+        (chatWidget.style.display = "block"),
+        (closeBtn.style.display = "block"),
+        (dragBtn.style.display = "block");
+    },
+    !1
+  );
+document.addEventListener("keydown", logKey);
+// wallMinimiser.addEventListener(
+//     "click",
+//     function (t) {
+//         (chatWidget.style.display = "none"), (chatbox.style.display = "none"), (wallExpander.style.display = "block"), (closeBtn.style.display = "none");
+//     },
+//     !1
+// ),
+// wallExpander.addEventListener(
+//     "click",
+//     function (t) {
+//         (chatWidget.style.display = "block"), (chatbox.style.display = "block"), (wallExpander.style.display = "none"), (closeBtn.style.display = "block");
+//     },
+//     !1
+// );
+let appendChatWidget = () => {
+  chatWidget.appendChild(maxBtn),
+    chatWidget.appendChild(tootltip),
+    chatWidget.appendChild(tootltip1),
+    document.body.appendChild(chatWidget);
+};
+appendChatWidget(),
+  chatbox.appendChild(titleBar),
+  chatbox.appendChild(frameBody),
+  chatbox.appendChild(wallMinimiser),
+  document.body.appendChild(chatbox),
+  // document.body.appendChild(wallExpander),
+  document.body.appendChild(closeBtn),
+  !1 == isMobile && document.body.appendChild(dragBtn),
+  (dealIcon.src =
+    "https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/DEALS....png");
+let style = document.createElement("style");
+if (
+  ((style.innerHTML =
+    "\n\n@-moz-keyframes blink {\n    0% {\n        opacity:1;\n    }\n    50% {\n        opacity:0;\n    }\n    100% {\n        opacity:1;\n    }\n} \n\n@-webkit-keyframes blink {\n    0% {\n        opacity:1;\n    }\n    50% {\n        opacity:0;\n    }\n    100% {\n        opacity:1;\n    }\n}\n/* IE */\n@-ms-keyframes blink {\n    0% {\n        opacity:1;\n    }\n    50% {\n        opacity:0;\n    }\n    100% {\n        opacity:1;\n    }\n} \n/* Opera and prob css3 final iteration */\n@keyframes blink {\n    0% {\n        opacity:1;\n    }\n    50% {\n        opacity:0;\n    }\n    100% {\n        opacity:1;\n    }\n} \n.corover-dialog {\n  z-index: 999999;\n  display: none;\n  position: absolute;\n  background: white;\n  line-height: 16px !important;\n  color: black;\n  font-family: sans-serif;\n  padding: 7px 17px 7px 17px;\n  width: 250px;\n  text-align: left;\n  right: 23px;\n  bottom: 114px;\n  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(95, 71, 71, 0.24);\n  border-radius: 10px;\n  font-size: 12px;\n}\n\n.corover-deals-image {\n    -moz-animation: blink normal 2s infinite ease-in-out; /* Firefox */\n    -webkit-animation: blink normal 2s infinite ease-in-out; /* Webkit */\n    -ms-animation: blink normal 2s infinite ease-in-out; /* IE */\n    animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */\n}\n\n\n    @media only screen and (max-width:640px) {\n    #corover-chatbox {\n        width: 100% !important;\n        height: calc(100% - 20px) !important;\n               right: 0px !important;\n        left: 0px !important;\n        bottom: 0px !important;\n    }\n}"),
+  document.head.appendChild(style),
+  isMobile)
+)
+  document.getElementById("corover-close-btn").style.display = "block";
+else {
+  function t() {
+    let t = sessionStorage.getItem("lang");
+    t
+      ? "hi" == t
+        ? (tootltip.innerHTML =
+            "<span>नमस्ते\uD83D\uDE4F,<br>मैं आपका डिजिटल सहायक हूं।<br><br>आप डिजिटल भुगतान से संबंधित अपने प्रश्न पूछ सकते हैं या बैंक/संस्थान संपर्क विवरण प्राप्त कर सकते हैं।</span>")
+        : "en" == t
+        ? (tootltip.innerHTML =
+            "<span>Hello,<br>I am your Digital Assistant.<br><br>You may ask your queries related to digital payments or can get Bank / Institution contact details. </span>")
+        : "mr" == t
+        ? (tootltip.innerHTML =
+            "<span>नमस्कार,<br>मी तुमचा डिजिटल असिस्टंट आहे.<br><br>तुम्ही डिजिटल पेमेंटशी संबंधित तुमच्या शंका विचारू शकता किंवा बँक/संस्थांचे संपर्क तपशील मिळवू शकता. </span>")
+        : "kn" == t &&
+          (tootltip.innerHTML =
+            "<span>ನಮಸ್ಕಾರ,<br>ನಾನು ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಸಹಾಯಕ.<br><br>ಡಿಜಿಟಲ್ ಪಾವತಿಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು ನೀವು ಕೇಳಬಹುದು ಅಥವಾ ಬ್ಯಾಂಕ್/ಸಂಸ್ಥೆಯ ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಪಡೆಯಬಹುದು. </span>")
+      : (tootltip.innerHTML =
+          "<span>Hello,<br>I am your Digital Assistant.<br><br>You may ask your queries related to digital payments or can get Bank / Institution contact details. </span>"),
+      0 == minimize
+        ? (tootltip.style.display = "block")
+        : (document.getElementById("corover-max-btn").style.display = "block");
+  }
+  function e() {
+    isOpen || (closeBtn.style.display = "block"),
+      (tootltip.style.display = "none");
+  }
+  document.getElementById("corover-cb-widget").addEventListener("mouseover", t),
+    document
+      .getElementById("corover-cb-widget")
+      .addEventListener("mouseleave", e);
+}
+function maximize() {
+  (isminimum = !0),
+    (chatbox.style.height = "calc(var(--vh, 1vh) * 87)"),
+    (miinBtn.style.backgroundImage =
+      " url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/minimize-window-26.png)"),
+    (miinBtn.style.left = "86%"),
+    (miinBtn.style.backgroundSize = "16px 16px"),
+    (miinBtn.style.backgroundPosition = "9px 8px"),
+    (miinBtn.style.top = "15px");
+}
+function miinimize() {
+  (isminimum = !1),
+    (chatbox.style.height = "calc(var(--vh, 1vh) * 22)"),
+    (miinBtn.style.backgroundImage =
+      " url(https://cdn.jsdelivr.net/gh/corover/assets@latest/digisaathi-assets/maximize-window-48.png)"),
+    (miinBtn.style.backgroundPosition = "8px 8px"),
+    (miinBtn.style.backgroundSize = "25px 24px"),
+    (miinBtn.style.left = "86%"),
+    (miinBtn.style.top = "11px");
+}
+(style.innerHTML =
+  "body, html {min-height: 100vh;} @media only screen and (max-width:840px) and (orientation:landscape){#corover-chatbox{height:100%!important;height:calc(100% - 20px)!important;top:20px!important;right:0!important}}@media only screen and (max-width:640px) and (orientation:portrait){#corover-chatbox{width:100%!important;height:100%!important;top:2px!important;right:0!important;left:0!important;bottom:0!important}}\n.coroverAvtr {\n  /* Start the shake animation and make the animation last for 0.5 seconds */\n  animation: shake 0.5s;\n\n  /* When the animation is finished, start again */\n  animation-iteration-count: infinite;\n}\n\n@keyframes shake {\n  0% { transform: translate(1px, 1px) rotate(0deg); }\n  10% { transform: translate(-1px, -2px) rotate(-1deg); }\n  20% { transform: translate(-3px, 0px) rotate(1deg); }\n  30% { transform: translate(3px, 2px) rotate(0deg); }\n  40% { transform: translate(1px, -1px) rotate(1deg); }\n  50% { transform: translate(-1px, 2px) rotate(-1deg); }\n  60% { transform: translate(-3px, 1px) rotate(0deg); }\n  70% { transform: translate(3px, 1px) rotate(-1deg); }\n  80% { transform: translate(-1px, -1px) rotate(1deg); }\n  90% { transform: translate(1px, 2px) rotate(0deg); }\n  100% { transform: translate(1px, -2px) rotate(-1deg); }\n}\n\n .expander_widget{padding: 0px 0px 1px 0px;top: 50%;border-radius: 3px 0px 0px 3px;right: 0px;width: 30px;color: blue;background: #c1c1c1;height: 30px;display: block;cursor: pointer;transform: rotate(90deg);}"),
+  document.head.appendChild(style),
+  setInterval(() => {
+    document.getElementById("corover-cb-widget").classList.add("coroverAvtr"),
+      setTimeout(() => {
+        document
+          .getElementById("corover-cb-widget")
+          .classList.remove("coroverAvtr");
+      }, 1e3);
+  }, 6e3),
+  (dragBtn.onmousedown = function(t) {
+    let e = t.clientX - dragBtn.getBoundingClientRect().left,
+      n = t.clientY - dragBtn.getBoundingClientRect().top,
+      i = t.clientX - chatWidget.getBoundingClientRect().left,
+      o = t.clientY - chatWidget.getBoundingClientRect().top,
+      a = t.clientX - closeBtn.getBoundingClientRect().left,
+      r = t.clientY - closeBtn.getBoundingClientRect().top;
+    function l(t, l) {
+      (dragBtn.style.left = t - e + "px"),
+        (dragBtn.style.top = l - n + "px"),
+        (chatWidget.style.left = t - i + "px"),
+        (chatWidget.style.top = l - o + "px"),
+        (closeBtn.style.left = t - a + "px"),
+        (closeBtn.style.top = l - r + "px");
+    }
+    function p(t) {
+      l(t.pageX, t.pageY);
+    }
+    (dragBtn.style.position = "absolute"),
+      document.body.append(dragBtn),
+      (closeBtn.style.position = "absolute"),
+      document.body.append(closeBtn),
+      (chatWidget.style.position = "absolute"),
+      document.body.append(chatWidget),
+      l(t.pageX, t.pageY),
+      document.addEventListener("mousemove", p),
+      (dragBtn.onmouseup = function() {
+        document.removeEventListener("mousemove", p),
+          (dragBtn.onmouseup = null);
+      });
+  }),
+  (dragBtn.ondragstart = function() {
+    return !1;
+  }),
+  chatWidget.addEventListener("touchmove", function(t) {
+    var e = t.targetTouches[0];
+    (chatWidget.style.left = e.pageX + "px"),
+      (chatWidget.style.top = e.pageY + "px"),
+      (closeBtn.style.left = e.pageX + 72 + "px"),
+      (closeBtn.style.top = e.pageY - 14 + "px");
+  }),
+  chatWidget.addEventListener("touchend", function(t) {
+    parseInt(chatWidget.style.left), parseInt(chatWidget.style.top);
+  });

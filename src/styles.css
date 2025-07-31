@@ -1,0 +1,453 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:300,400,600");
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans:wght@600&display=swap");
+
+body {
+   font-size: 16px;
+}
+input,
+select {
+   font-size: 100%;
+}
+/*** iPhone and iOS Form Input Zoom Fixes ***/
+/* Fix Input Zoom on devices older than iPhone 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+   select,
+   textarea,
+   input[type="text"],
+   input[type="password"],
+   input[type="datetime"],
+   input[type="datetime-local"],
+   input[type="date"],
+   input[type="month"],
+   input[type="time"],
+   input[type="week"],
+   input[type="number"],
+   input[type="email"],
+   input[type="url"] {
+      font-size: 16px;
+   }
+}
+
+/* Fix Input Zoom on iPhone 5, 5C, 5S, iPod Touch 5g */
+@media screen and (device-aspect-ratio: 40/71) {
+   select,
+   textarea,
+   input[type="text"],
+   input[type="password"],
+   input[type="datetime"],
+   input[type="datetime-local"],
+   input[type="date"],
+   input[type="month"],
+   input[type="time"],
+   input[type="week"],
+   input[type="number"],
+   input[type="email"],
+   input[type="url"] {
+      font-size: 16px;
+   }
+}
+
+/* Fix Input Zoom on iPhone 6, iPhone 6s, iPhone 7  */
+@media screen and (device-aspect-ratio: 375/667) {
+   select,
+   textarea,
+   input[type="text"],
+   input[type="password"],
+   input[type="datetime"],
+   input[type="datetime-local"],
+   input[type="date"],
+   input[type="month"],
+   input[type="time"],
+   input[type="week"],
+   input[type="number"],
+   input[type="email"],
+   input[type="tel"],
+   input[type="url"] {
+      font-size: 16px;
+   }
+}
+
+/* Fix Input Zoom on iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8, iPhone X, XS, XS Max  */
+@media screen and (device-aspect-ratio: 9/16) {
+   select,
+   textarea,
+   input[type="text"],
+   input[type="password"],
+   input[type="datetime"],
+   input[type="datetime-local"],
+   input[type="date"],
+   input[type="month"],
+   input[type="time"],
+   input[type="week"],
+   input[type="number"],
+   input[type="email"],
+   input[type="tel"],
+   input[type="url"] {
+      font-size: 16px;
+   }
+}
+
+@-moz-document url-prefix() {
+   .mic {
+      border-left: solid 1px #fff !important;
+      display: none !important;
+   }
+}
+
+/* / Style only for Internet Explorer / */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+   .mic {
+      border-left: solid 1px #fff !important;
+      display: none !important;
+   }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1) {
+   ::i-block-chrome,
+   .mic {
+      border-left: solid 1px #fff !important;
+      display: none !important;
+   }
+}
+
+@supports (-ms-ime-align: auto) {
+   .mic {
+      border-left: solid 1px #fff !important;
+      display: none !important;
+   }
+}
+
+body {
+   font-family: "Work Sans", sans-serif;
+   font-feature-settings: "liga", "kern";
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background: #b8c4da;
+}
+.disabled {
+   pointer-events: none !important;
+}
+
+*:hover {
+   text-decoration: none !important;
+}
+.disable-select {
+   user-select: none; /* supported by Chrome and Opera */
+}
+.dislikebtn:hover {
+   color: red !important;
+   border: 1px solid red !important;
+}
+.likebtn:hover {
+   color: green !important;
+   border: 1px solid green !important;
+}
+.corover-chat-body {
+  flex: 1; /* Take remaining space */
+  overflow-y: auto; /* Scroll when content exceeds */
+  min-height: 0; /* Needed for flex children to scroll properly */
+}
+
+/* .ant-list-bordered .ant-list-header {
+   font-family: "Encode Sans", sans-serif;
+} */
+
+.ta-item {
+   position: relative;
+   z-index: 2;
+   background: aliceblue;
+   display: block;
+}
+@media (min-width: 576px) {
+    .container, .container-sm {
+        max-width: 100% !important;
+    }
+}
+.chatbot-UI {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* height: 100%; */
+
+  max-height: 100%;
+  overflow-y: auto;
+    display: flex;
+  flex-direction: column;
+  height: 100vh; /* Or any fixed height */
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Apple Color Emoji", Helvetica, Arial, sans-serif;
+  text-rendering: optimizeSpeed;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  /* border: 1px solid #dfe1e5; */
+  box-shadow: 0 7px 6px 1px rgb(0 0 0 / 16%);
+}
+[nz-carousel-content] {
+   text-align: center;
+   height: 160px !important;
+   line-height: 160px;
+   background: #dae6fc;
+   color: #fff;
+   overflow: hidden;
+}
+nz-carousel {
+   height: 160px !important;
+}
+.ant-alert-info {
+   border: none;
+}
+.ta-results {
+   font-size: small;
+   /* font-family: Nunito!important; */
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   border: 0.5px solid #ddd;
+   bottom: 28px;
+   max-height: 150px !important;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   width: 100%;
+   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.06);
+   z-index: 0;
+   border-radius: 15px 15px 0 0;
+}
+
+.poweredBySec {
+   font-size: 12px;
+   line-height: 16px;
+   font-weight: 600;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   width: 100%;
+   margin-top: auto;
+   height: 35px;
+   border-top-width: 1px;
+   border-top-style: solid;
+   border-top-color: rgb(238, 238, 238);
+   background: rgb(249, 249, 249);
+}
+
+.ant-statistic {
+   padding: 8px !important;
+}
+
+.ant-list-item:hover {
+   background: #e8e8e8;
+   color: white;
+}
+
+.mic-show {
+   position: absolute;
+   z-index: 9;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -36%);
+}
+.done {
+   background-color: rgba(212, 211, 211, 0.603);
+   border-radius: 20px;
+   padding: 10px;
+   border: solid 1px rgb(212, 211, 211);
+}
+
+.dislikeContainer {
+   text-align: center;
+   border: solid 0.3px #3f51b5;
+   border-radius: 10px;
+   margin: 15px;
+}
+.dislike {
+   width: 92%;
+   /* left: 5%;
+    margin: 1em; */
+   border-radius: 10px;
+   font-family: Arial, Helvetica, sans-serif !important;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.301);
+   transition: 0.3s;
+   border: solid 0.3px #9e9e9e;
+   top: 12em;
+   right: 15px;
+   /* margin: 19px; */
+   /* width: 23em;
+       left: 10%; */
+   position: absolute;
+   padding: 10px;
+   background: #fff !important;
+   /* tosp: 10em; */
+}
+
+.ant-list-split .ant-list-item:last-child:hover {
+   border-bottom-right-radius: 15px;
+   border-bottom-left-radius: 15px;
+}
+button {
+   margin-right: 5px;
+   border-radius: 2px !important;
+}
+.feedbtns {
+   float: right;
+}
+
+.ant-card-body {
+   padding: 9px !important;
+   zoom: 0 !important;
+}
+
+.ant-descriptions-bordered.ant-descriptions-small .ant-descriptions-item-label,
+.ant-descriptions-bordered.ant-descriptions-small .ant-descriptions-item-content {
+   padding: 8px 7px !important;
+}
+
+.ant-descriptions-item-label {
+   font-size: 12px !important;
+}
+.ant-descriptions-item-content {
+   font-size: 12px !important;
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select:focus,
+textarea {
+   font-size: 16px !important;
+}
+
+.ant-list-split .ant-list-header  {
+   /* font-family: "Encode Sans", sans-serif; */
+   background: #e6ebf0 !important;
+   border-radius: 1rem 1rem 0 0;
+   font-size: 16px;
+   font-weight: 600;
+}
+
+.ant-list-bordered .ant-list-item  {
+   /* padding-right: 19px;
+   padding-left: 19px; */
+   border-bottom: 1px solid #e8e8e8;
+   /* font-size: 15px; */
+}
+
+.ant-list-bordered .ant-list-header {
+   /* padding-right: 10px !important;
+   padding-left: 10px !important; */
+   /* font-size: 16px !important; */
+   font-weight: bold;
+}
+
+.ant-list-bordered .ant-list-item {
+   /* padding: 8px 15px !important;
+   font-size: 16px !important; */
+   border-bottom: 1px solid #e8e8e8;
+}
+
+.ant-list-bordered .ant-list-item:hover {
+   /* padding-right: 15px !important;
+   padding-left: 15px !important;
+   font-size: 16px !important; */
+   background-color: #193282;
+   border-bottom: 1px solid #e8e8e8;
+   color: white !important;
+}
+
+.ant-list-bordered .ant-list-item:hover span {
+   color: white !important;
+}
+
+.ant-list-split .ant-list-item:last-child {
+   border-bottom: none;
+   border-radius: 0 0 1rem 1rem !important;
+}
+
+.ant-list-item {
+   display: flex;
+   align-items: center;
+   padding: 7px 0;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
+.custom-option {
+  display: flex !important;
+  align-items: center;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 14px;
+  color: #2b3b4e !important;
+  background: #f3faff !important;
+  border-bottom: 1px solid #e1e9ef;
+  padding: 6px 14px !important;
+  min-height: 20px;
+  font-weight: normal;
+}
+
+.custom-option:last-child {
+  border-bottom: none !important;
+}
+
+.option-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+}
+
+.option-text {
+  font-size: small;
+  color: #2b3b4e;
+  font-family: inherit;
+  font-weight: normal;
+}
+div.mat-mdc-autocomplete-panel {
+    width: 100%;
+    max-height: 256px;
+    visibility: hidden;
+    transform-origin: center top;
+    overflow: auto;
+    padding: 0px 0 !important;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: var(--mat-autocomplete-container-shape, var(--mat-sys-corner-extra-small));
+    box-shadow: var(--mat-autocomplete-container-elevation-shadow, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12));
+    background-color: var(--mat-autocomplete-background-color, var(--mat-sys-surface-container));
+}
+div#mat-autocomplete-0 {
+    height: 150px;
+    border-radius: 20px;
+}
+.mat-mdc-option .mdc-list-item__primary-text {
+  font-size: small !important;
+}
+.mat-mdc-option {
+  min-height: 38px !important;
+}
