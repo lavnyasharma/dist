@@ -1,0 +1,12 @@
+{
+	"games":[
+		{
+			"title":"Primary Operations",
+			"enabled":true
+		},
+		{
+			"title":"Curated Games",
+			"enabled":false
+		}
+	]
+}

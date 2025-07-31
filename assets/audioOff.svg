@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="308.45" height="444.371" viewBox="0 0 308.45 444.371">
+  <g id="Group_5" data-name="Group 5" transform="translate(-200.5 -593.178)">
+    <g id="audio" transform="translate(200.5 536.948)">
+      <g id="Group_1" data-name="Group 1">
+        <path id="Path_3" data-name="Path 3" d="M262.78,57.851a15,15,0,0,0-15.65,1.284L130.59,144.6H15a15,15,0,0,0-15,15V352.4a15,15,0,0,0,15,15H130.59L247.129,452.86A15,15,0,0,0,271,440.764V71.231A15,15,0,0,0,262.78,57.851Z" fill="#eb6b4d"/>
+      </g>
+      <g id="Group_2" data-name="Group 2">
+        <path id="Path_6" data-name="Path 6" d="M0,352.4a15,15,0,0,0,15,15H130.59L247.129,452.86A15,15,0,0,0,271,440.764V256H0Z" fill="#b91919"/>
+      </g>
+    </g>
+    <path id="Path_15" data-name="Path 15" d="M0,0,286,422" transform="translate(215.5 610.5)" fill="none" stroke="#2488ff" stroke-width="18"/>
+  </g>
+</svg>
